@@ -6,8 +6,11 @@ public class ExchangeRate {
     public void convert() {
         Scanner sc = new Scanner(System.in);
         boolean isRightInput = false;
-        short selectedCurrency = 0;     // Эта переменная не будет использоваться в программе со значением 0.
-                                        // Поставил 0, ибо IntelliJ IDEA ругается
+        short selectedCurrency = 0;
+        double money = 0;
+        // Переменные selectedCurrency и money не будет использоваться в программе со значением 0.
+        // Поставил 0, ибо IntelliJ IDEA ругается, т.к. переменные изменяются только в циклах.
+
 
         while (!isRightInput) {
             System.out.println("Выберите валюту, которую будете конвертировать:");
@@ -30,10 +33,21 @@ public class ExchangeRate {
             }
         }
 
-        System.out.println("\nВведите сумму конвертации:\t");
-        double money = sc.nextDouble();
-        sc.nextLine();
-        System.out.println();
+        isRightInput = false;
+        while (!isRightInput) {
+            System.out.println("\nВведите сумму конвертации:\t");
+            money = sc.nextDouble();
+            sc.nextLine();
+            System.out.println();
+
+            if(money > 0) {
+                isRightInput = true;
+            }
+            else {
+                System.out.println("Неправильный ввод. Пожалуйста, введите пложительное значение" +
+                                    " конвертируемой валюты (больше 0).");
+            }
+        }
 
         switch (selectedCurrency) {
             case 1:
