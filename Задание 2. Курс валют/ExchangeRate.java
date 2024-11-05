@@ -1,53 +1,54 @@
 import java.util.Scanner;
 
 public class ExchangeRate {
-    private static final double USD = 97.4402;  // Доллар США
-    private static final double EUR = 105.8415; // Евро
-    private static final double CNY = 13.6394;  // Китайский юань
-    private static final double KZT = 19.9566;  // Казахстанских тенге
-    private static final double TRY = 28.4834;    // Турецких лир
-
-
     public ExchangeRate() {}
 
     public void convert() {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Введите сумму в рублях:\t");
+        System.out.println("Выберите валюту, которую будете конвертировать:");
+        System.out.println("1 - Рубли;");
+        System.out.println("2 - Доллар США;");
+        System.out.println("3 - Евро;");
+        System.out.println("4 - Китайский юань;");
+        System.out.println("5 - Казахстанский тенге;");
+        System.out.println("6 - Турецких лир.");
+        System.out.print("Выбор валюты: ");
+        short selectedCurrency = sc.nextShort();
+        sc.nextLine();
+
+        System.out.println("\nВведите сумму конвертации:\t");
         double money = sc.nextDouble();
+        sc.nextLine();
         System.out.println();
 
-        convertToUSD(money);
-        convertToEUR(money);
-        convertToCNY(money);
-        convertToKZT(money);
-        convertToTRY(money);
+        switch (selectedCurrency) {
+            case 1:
+                ConversionOfRUB conRUB = new ConversionOfRUB(money);
+                conRUB.convert();
+                break;
+            case 2:
+                ConversionOfUSD conUSD = new ConversionOfUSD(money);
+                conUSD.convert();;
+                break;
+            case 3:
+                ConversionOfEUR conEUR = new ConversionOfEUR(money);
+                conEUR.convert();;
+                break;
+            case 4:
+                ConversionOfCNY conCNY = new ConversionOfCNY(money);
+                conCNY.convert();;
+                break;
+            case 5:
+                ConversionOfKZT conKZT = new ConversionOfKZT(money);
+                conKZT.convert();;
+                break;
+            case 6:
+                ConversionOfTRY conTRY = new ConversionOfTRY(money);
+                conTRY.convert();;
+                break;
+        }
 
         sc.close();
-    }
-
-    private void convertToUSD(double money) {
-        double moneyUSD = money / USD;
-        System.out.println("Сумма " + money + " рублей в USD: " + moneyUSD);
-    }
-
-    private void convertToEUR(double money) {
-        double moneyUSD = money / EUR;
-        System.out.println("Сумма " + money + " рублей в EUR: " + moneyUSD);
-    }
-
-    private void convertToCNY(double money) {
-        double moneyUSD = money / CNY;
-        System.out.println("Сумма " + money + " рублей в CNY: " + moneyUSD);
-    }
-
-    private void convertToKZT(double money) {
-        double moneyUSD = money / KZT;
-        System.out.println("Сумма " + money + " рублей в KZT: " + moneyUSD);
-    }
-
-    private void convertToTRY(double money) {
-        double moneyUSD = money / TRY;
-        System.out.println("Сумма " + money + " рублей в TRY: " + moneyUSD);
     }
 }
